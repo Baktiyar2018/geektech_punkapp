@@ -3,6 +3,7 @@ package com.geektech.punkapp.data.beer;
 import android.support.annotation.Nullable;
 
 import com.geektech.punkapp.data.beer.model.Beer;
+import com.geektech.punkapp.data.beer.remote.BeerRemoteDataSource;
 
 import java.util.ArrayList;
 
@@ -47,6 +48,19 @@ public class BeerRepository implements BeerDataSource {
 
     @Override
     public void getBeerList(BeerListCallback callback) {
+        if(mRemote != null){
+            mRemote.getBeerList(new BeerListCallback() {
+                @Override
+                public void onSuccess(ArrayList<Beer> beers) {
+                    callback.onSuccess(beers);
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    callback.onError(e);
+                }
+            });
+        }
         //TODO: Call remote data source, and write response data to local data source
     }
 

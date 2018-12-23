@@ -74,6 +74,9 @@ public class BeerListFragment extends Fragment {
 
     private void updateData(ArrayList<Beer> beers){
         //TODO: Send beers data to mAdapter, call #setData()
+        mAdapter.setData(beers);
+
+
     }
 
     //endregion

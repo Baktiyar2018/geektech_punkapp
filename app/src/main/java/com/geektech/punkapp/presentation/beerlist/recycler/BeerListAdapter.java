@@ -55,6 +55,7 @@ public class BeerListAdapter extends RecyclerView.Adapter {
 
     public void setData(List<Beer> data) {
         //TODO: Implement data set and call #notifyDataSetChanged()
+
     }
 
     @Nullable

@@ -69,5 +69,14 @@ public class Beer {
         this.imageUrl = imageUrl;
     }
 
+    @Override
+    public String toString() {
+        return  id + " "
+                 + name + " "
+                 + description +" "
+                + imageUrl ;
+    }
+
     //endregion
+
 }
