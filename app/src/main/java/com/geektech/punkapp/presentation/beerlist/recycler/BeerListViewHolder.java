@@ -3,7 +3,9 @@ package com.geektech.punkapp.presentation.beerlist.recycler;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
+import com.geektech.punkapp.R;
 import com.geektech.punkapp.data.beer.model.Beer;
 
 /**
@@ -11,12 +13,25 @@ import com.geektech.punkapp.data.beer.model.Beer;
  * with Android Studio
  */
 public class BeerListViewHolder extends RecyclerView.ViewHolder {
-    public BeerListViewHolder(@NonNull View itemView) {
+    private TextView mName,mDesc,mUrl;
+    private BeerVHClickListener beerVHClickListener;
+    public BeerListViewHolder(@NonNull View itemView)
+    {
         super(itemView);
+        mName = itemView.findViewById(R.id.txtname);
+        mDesc = itemView.findViewById(R.id.txtdesc);
+        mUrl = itemView.findViewById(R.id.txturl);
+
     }
+
 
     void onBind(Beer beer){
         //TODO: Display beer data in views
+        mName.setText(beer.getName());
+        mDesc.setText(beer.getDescription());
+        mUrl.setText(beer.getImageUrl());
+        beerVHClickListener.onClick(beer.getId());
+
     }
 
     interface BeerVHClickListener {

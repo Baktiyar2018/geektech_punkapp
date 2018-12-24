@@ -20,6 +20,7 @@ public class BeerListAdapter extends RecyclerView.Adapter {
 
     private ArrayList<Beer> mData;
 
+
     //region Constructors
 
     public BeerListAdapter(ArrayList data){
@@ -53,14 +54,18 @@ public class BeerListAdapter extends RecyclerView.Adapter {
 
     //region Public
 
-    public void setData(List<Beer> data) {
+    public void setData(ArrayList<Beer> data) {
         //TODO: Implement data set and call #notifyDataSetChanged()
+
+        this.mData.addAll(data);
+        notifyDataSetChanged();
 
     }
 
     @Nullable
     public Beer getBeer(int position) {
-        return null; //TODO: Implement beer instance return
+        return null;
+        //TODO: Implement beer instance return
     }
 
     //endregion
