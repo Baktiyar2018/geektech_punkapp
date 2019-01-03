@@ -17,10 +17,14 @@ public interface BeerDataSource {
 
     void setBeerList(ArrayList<Beer> beers);
 
-    @Nullable Beer getBeer(int id);
+     void getBeer(int id, BeerCallback beerCallback);
 
     interface BeerListCallback{
         void onSuccess(ArrayList<Beer> beers);
+        void onError(Exception e);
+    }
+    interface BeerCallback{
+        void onSuccess(Beer beer);
         void onError(Exception e);
     }
 }

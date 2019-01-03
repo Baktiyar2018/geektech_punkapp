@@ -1,11 +1,13 @@
 package com.geektech.punkapp.data.beer.remote;
 
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.geektech.punkapp.core.retrofit.RetrofitBaseDataSource;
 import com.geektech.punkapp.data.beer.BeerDataSource;
 import com.geektech.punkapp.data.beer.model.Beer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -17,7 +19,7 @@ import retrofit2.Response;
  * with Android Studio
  */
 public class BeerRemoteDataSource extends RetrofitBaseDataSource implements BeerDataSource {
-
+    private Beer beer;
     //region Static
 
     private static BeerDataSource INSTANCE;
@@ -28,6 +30,8 @@ public class BeerRemoteDataSource extends RetrofitBaseDataSource implements Beer
 
         return INSTANCE;
     }
+
+
 
     //endregion
 
@@ -62,10 +66,34 @@ public class BeerRemoteDataSource extends RetrofitBaseDataSource implements Beer
 
     }
 
-    @Nullable
+
     @Override
-    public Beer getBeer(int id) {
-        return null;
+    public void getBeer(int id,BeerCallback callback) {
+        Call<Beer> beerCall = mClient.getBeerById(id);
+        beerCall.enqueue(new Callback<Beer>() {
+
+            @Override
+            public void onResponse(Call<Beer> call, Response<Beer> response) {
+                if(response.isSuccessful()) {
+                    if(response.body() != null) {
+                        callback.onSuccess(new Beer(response.body().getId(),
+                                response.body().getName(),
+                                response.body().getDescription(),
+                                response.body().getImageUrl()));
+                    }else {
+                        callback.onError(new Exception("ololo-Request body is empty-getBeer"));
+                    }
+                }else{
+                    callback.onError(new Exception("ololo - Request is failed-getBeer"+ response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Beer> call, Throwable t) {
+                    callback.onError(new Exception(t.getMessage()));
+            }
+        });
+
     }
 
     @Override

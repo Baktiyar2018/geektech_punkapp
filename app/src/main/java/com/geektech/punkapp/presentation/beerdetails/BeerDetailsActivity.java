@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.geektech.punkapp.R;
+
 /**
  * Created by askar on 12/15/18
  * with Android Studio
  */
 public class BeerDetailsActivity extends AppCompatActivity {
-
+    Integer mId;
     //region Static
 
     private static String EXTRA_BEER_ID = "beer_id";
@@ -34,7 +36,18 @@ public class BeerDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //TODO: Create #BeerDetailsFragment instance and set it via #SupportFragmentManager
         if (savedInstanceState == null) {
-
+            mId = getIntent().getIntExtra(EXTRA_BEER_ID,-1);
+            BeerDetailsFragment fragment = BeerDetailsFragment.newInstance();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.main_container,fragment)
+                    .commit();
         }
+
+
+    }
+    public int getBeerId(){
+
+
+        return mId;
     }
 }

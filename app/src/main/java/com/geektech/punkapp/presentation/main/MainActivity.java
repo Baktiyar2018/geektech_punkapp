@@ -23,14 +23,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+/*
         BeerListFragment beerListFragment = new BeerListFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.main_container,beerListFragment);
+        */
+
         //TODO: Create #BeerListFragment instance and set it via #SupportFragmentManager
         if (savedInstanceState == null) {
-
+            BeerListFragment fragment = BeerListFragment.newInstance();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.main_container,fragment)
+                    .commit();
 
 
         }

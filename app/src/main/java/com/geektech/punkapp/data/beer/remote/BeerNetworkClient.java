@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -19,5 +20,7 @@ public interface BeerNetworkClient {
     Call<ArrayList<Beer>> getBeerList(
             @Query("page") int page,
             @Query("per_page") int perPage);
+    @GET(BeerRemoteConfig.BEERS_BY_ID)
+    Call<Beer>getBeerById(@Path("id") int id);
 
 }

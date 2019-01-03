@@ -38,11 +38,11 @@ public class BeerLocalDataSource implements BeerDataSource {
         //TODO: Write beers into DB
     }
 
-    @Nullable
+
     @Override
-    public Beer getBeer(int id) {
+    public void getBeer(int id, BeerCallback beerCallback) {
         //TODO: Fetch target Beer info from db
-        return null;
+
     }
 
     //endregion

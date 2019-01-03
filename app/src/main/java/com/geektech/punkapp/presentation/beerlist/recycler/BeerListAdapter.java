@@ -19,12 +19,14 @@ import java.util.List;
 public class BeerListAdapter extends RecyclerView.Adapter {
 
     private ArrayList<Beer> mData;
-
+    private BeerListViewHolder.BeerVHClickListener mlistener;
 
     //region Constructors
 
-    public BeerListAdapter(ArrayList data){
+    public BeerListAdapter(ArrayList data,
+                           BeerListViewHolder.BeerVHClickListener listener){
         this.mData = data;
+        this.mlistener = listener;
     }
 
     //endregion
@@ -35,7 +37,8 @@ public class BeerListAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         return new BeerListViewHolder(LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.adapter_beer_item, viewGroup, false));
+                .inflate(R.layout.adapter_beer_item, viewGroup, false),
+                mlistener);
     }
 
     @Override

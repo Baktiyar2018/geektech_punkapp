@@ -64,11 +64,24 @@ public class BeerRepository implements BeerDataSource {
         //TODO: Call remote data source, and write response data to local data source
     }
 
-    @Nullable
+
     @Override
-    public Beer getBeer(int id) {
+    public void getBeer(int id, BeerCallback beerCallback) {
         //TODO: Get beer from in memory cache or from local data source
-        return null;
+        if(mRemote != null){
+            mRemote.getBeer(id, new BeerCallback() {
+                @Override
+                public void onSuccess(Beer beer) {
+                    beerCallback.onSuccess(beer);
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    beerCallback.onError(e);
+                }
+            });
+        }
+
     }
 
     @Override
