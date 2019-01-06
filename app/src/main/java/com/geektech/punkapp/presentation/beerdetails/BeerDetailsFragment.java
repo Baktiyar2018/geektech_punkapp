@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,13 @@ import com.geektech.punkapp.data.beer.model.Beer;
 //TODO: All setup is in your hands
 public class BeerDetailsFragment extends Fragment {
     private TextView mName,mDesc,mUrl;
+
+
     public  static BeerDetailsFragment newInstance(){
+
         return new BeerDetailsFragment();
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,11 +37,13 @@ public class BeerDetailsFragment extends Fragment {
         View rootView = inflater.from(getContext())
                 .inflate(R.layout.fragment_beer_details,container,false);
 
-        BeerDetailsActivity DetailsActivity = (BeerDetailsActivity)getActivity();
-        Integer mId = DetailsActivity.getBeerId();
+        //BeerDetailsActivity DetailsActivity = (BeerDetailsActivity)getActivity();
+        Integer mId = getArguments().getInt("beer_id");
         mName = rootView.findViewById(R.id.txtnamed);
         mDesc = rootView.findViewById(R.id.txtdescd);
         mUrl = rootView.findViewById(R.id.txturld);
+        Log.d("ololo-Detailsfragment",Integer.toString(mId));
+
         loadBeer(mId,rootView);
 
         return rootView;

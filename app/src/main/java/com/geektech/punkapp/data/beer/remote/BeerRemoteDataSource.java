@@ -10,6 +10,8 @@ import com.geektech.punkapp.data.beer.model.Beer;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.xml.transform.Result;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -69,7 +71,35 @@ public class BeerRemoteDataSource extends RetrofitBaseDataSource implements Beer
 
     @Override
     public void getBeer(int id,BeerCallback callback) {
-        Call<Beer> beerCall = mClient.getBeerById(id);
+
+        Call<ArrayList<Beer>> beerCall = mClient.getBeerById(id);
+        beerCall.enqueue(new Callback<ArrayList<Beer>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Beer>> call, Response<ArrayList<Beer>> response) {
+                if(response.isSuccessful()) {
+                    if(response.body() != null) {
+                        ArrayList<Beer> beers = response.body();
+                        for(Beer b : beers){
+                            if (b.getId() == id){
+                                callback.onSuccess(b);
+                            }
+                        }
+
+
+                    }else {
+                        callback.onError(new Exception("ololo-Request body is empty-getBeer"));
+                    }
+                }else{
+                    callback.onError(new Exception("ololo - Request is failed-getBeer"+ response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Beer>> call, Throwable t) {
+
+            }
+        });
+       /* Call<Beer> beerCall = mClient.getBeerById(id);
         beerCall.enqueue(new Callback<Beer>() {
 
             @Override
@@ -93,6 +123,7 @@ public class BeerRemoteDataSource extends RetrofitBaseDataSource implements Beer
                     callback.onError(new Exception(t.getMessage()));
             }
         });
+        */
 
     }
 

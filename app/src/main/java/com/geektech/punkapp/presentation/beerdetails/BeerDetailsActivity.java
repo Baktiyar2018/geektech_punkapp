@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.geektech.punkapp.R;
 
@@ -15,6 +16,7 @@ import com.geektech.punkapp.R;
  */
 public class BeerDetailsActivity extends AppCompatActivity {
     Integer mId;
+    private Bundle bundle = new Bundle();
     //region Static
 
     private static String EXTRA_BEER_ID = "beer_id";
@@ -34,20 +36,23 @@ public class BeerDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         //TODO: Create #BeerDetailsFragment instance and set it via #SupportFragmentManager
         if (savedInstanceState == null) {
             mId = getIntent().getIntExtra(EXTRA_BEER_ID,-1);
+            Log.d("ololo-onCreate",Integer.toString(mId));
+
             BeerDetailsFragment fragment = BeerDetailsFragment.newInstance();
+            bundle.putInt(EXTRA_BEER_ID,mId);
+            fragment.setArguments(bundle);
+
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.main_container,fragment)
                     .commit();
+
         }
 
 
     }
-    public int getBeerId(){
 
-
-        return mId;
-    }
 }

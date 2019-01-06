@@ -23,12 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
-        BeerListFragment beerListFragment = new BeerListFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.main_container,beerListFragment);
-        */
+
 
         //TODO: Create #BeerListFragment instance and set it via #SupportFragmentManager
         if (savedInstanceState == null) {
@@ -47,6 +42,21 @@ public class MainActivity extends AppCompatActivity {
 
         RepositoryProvider
                 .getBeerSource()
+                .getBeer(5,new BeerDataSource.BeerCallback() {
+                    @Override
+                    public void onSuccess(Beer beer) {
+                        Log.d("ololo", beer.getName());
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Log.d("ololo-error", e.getMessage());
+                    }
+                });
+                */
+/*
+        RepositoryProvider
+                .getBeerSource()
                 .getBeerList(new BeerDataSource.BeerListCallback() {
                     @Override
                     public void onSuccess(ArrayList<Beer> beers) {
@@ -60,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
                             Log.d("ololo",e.getMessage());
                     }
                 });
+*/
 
-    }*/
 
 
 }

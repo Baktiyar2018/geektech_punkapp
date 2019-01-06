@@ -3,6 +3,7 @@ package com.geektech.punkapp.presentation.beerlist.recycler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,7 +23,13 @@ public class BeerListViewHolder extends RecyclerView.ViewHolder {
         mName = itemView.findViewById(R.id.txtname);
         mDesc = itemView.findViewById(R.id.txtdesc);
         mUrl = itemView.findViewById(R.id.txturl);
-        itemView.setOnClickListener(v -> mListener.onClick(getAdapterPosition()));
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(getAdapterPosition());
+                Log.d("ololo",Integer.toString(getAdapterPosition()));
+            }
+        });
 
     }
 
