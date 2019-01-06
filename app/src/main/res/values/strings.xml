@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PunkApp</string>
+    <string name="Beer_name">Name</string>
+    <string name="Beer_url">URL</string>
+    <string name="Beer_description">Description</string>
+    <string name="todo">TODO</string>
+    <string name="Item_Name">Item</string>
 </resources>

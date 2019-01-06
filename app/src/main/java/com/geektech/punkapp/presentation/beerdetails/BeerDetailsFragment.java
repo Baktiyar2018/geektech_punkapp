@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.geektech.punkapp.R;
 import com.geektech.punkapp.data.RepositoryProvider;
 import com.geektech.punkapp.data.beer.BeerDataSource;
@@ -22,6 +25,7 @@ import com.geektech.punkapp.data.beer.model.Beer;
 //TODO: All setup is in your hands
 public class BeerDetailsFragment extends Fragment {
     private TextView mName,mDesc,mUrl;
+    private ImageView imageView;
 
 
     public  static BeerDetailsFragment newInstance(){
@@ -41,7 +45,7 @@ public class BeerDetailsFragment extends Fragment {
         Integer mId = getArguments().getInt("beer_id");
         mName = rootView.findViewById(R.id.txtnamed);
         mDesc = rootView.findViewById(R.id.txtdescd);
-        mUrl = rootView.findViewById(R.id.txturld);
+        imageView = rootView.findViewById(R.id.detail_image);
         Log.d("ololo-Detailsfragment",Integer.toString(mId));
 
         loadBeer(mId,rootView);
@@ -55,9 +59,16 @@ public class BeerDetailsFragment extends Fragment {
         RepositoryProvider.getBeerSource().getBeer(id, new BeerDataSource.BeerCallback() {
             @Override
             public void onSuccess(Beer beer) {
+                RequestOptions options = new RequestOptions();
+
+                options.fitCenter();
+
                 mName.setText(beer.getName());
                 mDesc.setText(beer.getDescription());
-                mUrl.setText(beer.getImageUrl());
+                Glide.with(view)
+                        .load(beer.getImageUrl())
+                        .apply(options)
+                        .into(imageView);
 
             }
 

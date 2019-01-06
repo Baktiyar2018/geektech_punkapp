@@ -1,41 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/detailsview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
-
+    android:orientation="vertical"
+    android:weightSum="100">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="70"
+        android:id="@+id/detail_image"
+        android:src="@mipmap/ic_launcher"
+        android:contentDescription="@string/todo"
+        android:layout_marginTop="8dp"/>
     <TextView
         android:id="@+id/txtnamed"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/txtdescd"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="214dp" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Beer_name"
+        android:textColor="#000"/>
+
 
     <TextView
         android:id="@+id/txtdescd"
-        android:layout_width="match_parent"
-        android:layout_height="22dp"
-        android:layout_marginBottom="24dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/txturld"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <TextView
-        android:id="@+id/txturld"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="300dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="37dp" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Beer_description"
+        android:textColor="#000"
+        android:layout_marginEnd="10dp"/>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
