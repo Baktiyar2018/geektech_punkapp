@@ -5,4 +5,5 @@
     <string name="Beer_description">Description</string>
     <string name="todo">TODO</string>
     <string name="Item_Name">Item</string>
+    <string name="title_activity_beer_list">BeerListActivity</string>
 </resources>

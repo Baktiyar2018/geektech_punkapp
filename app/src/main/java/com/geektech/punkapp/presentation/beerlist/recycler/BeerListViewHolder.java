@@ -43,6 +43,7 @@ public class BeerListViewHolder extends RecyclerView.ViewHolder {
 
     void onBind(Beer beer){
         //TODO: Display beer data in views
+
         RequestOptions options = new RequestOptions();
         options.circleCropTransform();
 

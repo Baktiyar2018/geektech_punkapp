@@ -26,11 +26,11 @@ import java.util.ArrayList;
  * with Android Studio
  */
 public class BeerListFragment extends Fragment
-        implements BeerListViewHolder.BeerVHClickListener {
+        implements BeerListViewHolder.BeerVHClickListener , BeerListContract.View {
 
     private RecyclerView mRecycler;
     private BeerListAdapter mAdapter;
-
+    private BeerListContract.Presenter mPresenter = null;
     //region Static
 
     public static BeerListFragment newInstance(){
@@ -79,7 +79,9 @@ public class BeerListFragment extends Fragment
                 .getBeerList(new BeerDataSource.BeerListCallback() {
                     @Override
                     public void onSuccess(ArrayList<Beer> beers) {
+
                         updateData(beers);
+
                     }
 
                     @Override
@@ -93,6 +95,29 @@ public class BeerListFragment extends Fragment
         //TODO: Send beers data to mAdapter, call #setData()
         mAdapter.setData(beers);
 
+
+    }
+
+    @Override
+    public void showListSuccess() {
+
+    }
+
+    @Override
+    public void showListFailure(String message) {
+
+    }
+
+    @Override
+    public void finishView() {
+        if(getActivity() != null){
+            getActivity().finish();
+        }
+
+    }
+
+    @Override
+    public void attachPresenter(BeerListContract.Presenter presenter) {
 
     }
 

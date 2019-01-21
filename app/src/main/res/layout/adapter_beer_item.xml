@@ -4,23 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:scaleType="centerCrop"
         android:layout_gravity="center"
         android:id="@+id/item_images"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_launcher"
+        android:layout_margin="5dp"
+        />
 
     <TextView
         android:id="@+id/txtname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/item_images"
-        android:textColor="#000"
         android:layout_centerVertical="true"
         android:layout_marginStart="30dp"
-        android:textSize="20sp"/>
+        android:layout_toEndOf="@id/item_images"
+        android:fontFamily="@font/amaranth"
+        android:text="@string/Item_Name"
+        android:textColor="#000"
+        android:textSize="20sp"
+        />
 
 
 </RelativeLayout>

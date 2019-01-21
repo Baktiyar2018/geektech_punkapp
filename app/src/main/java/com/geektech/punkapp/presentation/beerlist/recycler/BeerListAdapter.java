@@ -1,5 +1,6 @@
 package com.geektech.punkapp.presentation.beerlist.recycler;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -46,6 +47,8 @@ public class BeerListAdapter extends RecyclerView.Adapter {
         if (viewHolder instanceof BeerListViewHolder) {
             ((BeerListViewHolder) viewHolder).onBind(mData.get(i));
         }
+
+
     }
 
     @Override
